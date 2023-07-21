@@ -12,7 +12,13 @@ describe('ShortUuidServiceService', () => {
     service = module.get<ShortUuidService>(ShortUuidService);
   });
 
+  // Test case: Check if the service is defined
   it('should be defined', () => {
     expect(service).toBeDefined();
+  });
+
+  it('should generate a short UUID as a string', () => {
+    const generatedUuid = service.get();
+    expect(generatedUuid).toBeDefined()
   });
 });

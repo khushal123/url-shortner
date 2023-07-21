@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, HttpCode, Res } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Res } from '@nestjs/common';
 import { ShortUrlsService } from './short_urls.service';
 import { CreateShortUrlDto } from './dto/create-short_url.dto';
 import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
@@ -18,13 +18,13 @@ export class ShortUrlsController {
 
 
   @Get(':urlHash')
-  @HttpCode(302)
   @ApiCreatedResponse({ type: ShortUrlEntity })
   async findOne(@Param('urlHash') urlHash: string, @Res() response: Response) {
     try {
       const shortUrl = await this.shortUrlsService.findOne(urlHash);
-      return response.header("Location", shortUrl.urlHash).send()
+      return response.status(302).header("Location", shortUrl.url).end()
     } catch (error) {
+      console.error(error)
       return error
     }
   }
