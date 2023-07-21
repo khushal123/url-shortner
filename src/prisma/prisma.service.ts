@@ -3,6 +3,6 @@ import { PrismaClient } from '@prisma/client';
 import { async } from 'rxjs';
 
 @Injectable()
-export class PrismaService  extends PrismaClient{
-    
+export class PrismaService extends PrismaClient {
+
 }
